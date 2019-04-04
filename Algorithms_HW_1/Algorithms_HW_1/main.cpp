@@ -54,3 +54,38 @@ void mergesort3(int * a, int * aux, int length){
 			a[s] = aux[s];
 	}
 }
+
+
+
+int arr[24] = {5,6,3,4,2,1,0,9,6,7,8,5,6,4,3,6,77,88,100,32,54,45,88,789};
+	int arr_size = sizeof(arr) / sizeof(arr[0]);
+	int p[24];
+	printf("Given array is \n");
+	printArray(arr, arr_size);
+
+	mergesort3(arr,p,arr_size);
+
+	printf("\nSorted array is \n");
+	printArray(arr, arr_size);
+	cout << "__________________________________________________________________" << endl;
+	cout << "                        Prof Brass Test case"<<endl;
+	int *r, *s; long i;
+	printf("Allocating Array. "); fflush(stdout);
+	r = (int *)malloc(3000000 * sizeof(int));
+	s = (int *)malloc(3000000 * sizeof(int));
+	printf("Filling array. "); fflush(stdout);
+	for (i = 0; i < 3000000; i++)
+		r[i] = 3 * ((137 * i) % 3000000);
+	printf("Sorting. "); fflush(stdout);
+	mergesort3(r, s, 3000000);
+	printf("Checking. \n"); fflush(stdout);
+	for (i = 0; i < 3000000; i++)
+		if (r[i] != 3 * i)
+		{
+			printf("Error at %d; is %d, should be %d\n", i, r[i], 3 * i);
+			fflush(stdout); exit(-1);
+		}
+	printf("Passed Test.\n");
+	system("pause");
+	return 0;
+}
